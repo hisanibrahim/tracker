@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Text, Button, Input } from "react-native-elements";
 import Spacer from "../components/Spacer";
 const SignupScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [passowrd, setPassword] = useState("");
   return (
     <View style={styles.container}>
       <Spacer>
         <Text h3>Sign up for Tracker</Text>
       </Spacer>
 
-      <Input label="Email" autoCapitalize="none" autoCorrect={false} />
+      <Input
+        label="Email"
+        autoCapitalize="none"
+        autoCorrect={false}
+        value={email}
+        onChangeText={setEmail}
+      />
       <Spacer />
       <Input
         label="Password"
         secureTextEntry
         autoCapitalize="none"
         autoCorrect={false}
+        value={passowrd}
+        onChangeText={setPassword}
       />
       <Spacer>
         <Button
