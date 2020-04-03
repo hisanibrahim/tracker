@@ -4,7 +4,8 @@ import { AsyncStorage } from "react-native";
 import { navigate } from "../navigationRef";
 const authReducer = (state, action) => {
   switch (action.type) {
-    case "signup":
+    // only one required, both signup and sign is same
+    case "signin":
       return { errorMessage: "", token: action.payload };
     case "add_error":
       return { token: null, errorMessage: action.payload };
@@ -26,7 +27,8 @@ const signup = dispatch => async ({ email, password }) => {
     // store token
     await AsyncStorage.setItem("token", response.data.token);
     // modify state
-    dispatch({ type: "signup", payload: response.data.token });
+    // dispatching same signin
+    dispatch({ type: "signin", payload: response.data.token });
     // navigate to mainflow from outside React
     navigate("TrackList");
   } catch (err) {
@@ -34,9 +36,22 @@ const signup = dispatch => async ({ email, password }) => {
     dispatch({ type: "add_error", payload: "Something went wrong!" });
   }
 };
-const signin = dispatch => ({ email, password }) => {
+const signin = dispatch => async ({ email, password }) => {
   // try to sign in
-  // handle success by updating state
+  try {
+    // handle success by updating state
+    // make api request
+    const response = await trackerApi.post("/signin", { email, password });
+    // modify state
+    dispatch({ type: "signin", payload: response.data.token });
+    // store token
+    await AsyncStorage.setItem("token", response.data.token);
+    // navigate to mainflow from outside React
+    navigate("TrackList");
+  } catch (err) {
+    console.log(err.message);
+    dispatch({ type: "add_error", payload: "Something went wrong!" });
+  }
   // handle failure by showing error message
 };
 const signout = dispatch => () => {
