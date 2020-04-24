@@ -1,11 +1,12 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-navigation";
 
 const TrackCreateScreen = () => {
   return (
-    <View>
+    <SafeAreaView forceInset={{ top: "always" }}>
       <Text>TrackCreateScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
