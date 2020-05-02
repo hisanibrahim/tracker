@@ -10,35 +10,38 @@ import TrackDetailScreen from "./src/screens/TrackDetailScreen";
 import TrackListScreen from "./src/screens/TrackListScreen";
 import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 import { Provider as AuthProvider } from "./src/context/AuthContext";
+import { Provider as LocationProvider } from "./src/context/LocationContext";
 import { setNavigator } from "./src/navigationRef";
 const switchNavigator = createSwitchNavigator({
   ResolveAuth: ResolveAuthScreen,
   loginFlow: createStackNavigator({
     Signup: SignupScreen,
-    Signin: SigninScreen
+    Signin: SigninScreen,
   }),
   mainFlow: createBottomTabNavigator({
     trackListFlow: createStackNavigator({
       TrackList: TrackListScreen,
-      TrackDetail: TrackDetailScreen
+      TrackDetail: TrackDetailScreen,
     }),
     TrackCreate: TrackCreateScreen,
-    Account: AccountScreen
-  })
+    Account: AccountScreen,
+  }),
 });
 
 const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
-    <AuthProvider>
-      <App
-        // to make possible navigation from outside react
-        // pass navigator from react-navigation as ref
-        ref={navigator => {
-          setNavigator(navigator);
-        }}
-      />
-    </AuthProvider>
+    <LocationProvider>
+      <AuthProvider>
+        <App
+          // to make possible navigation from outside react
+          // pass navigator from react-navigation as ref
+          ref={(navigator) => {
+            setNavigator(navigator);
+          }}
+        />
+      </AuthProvider>
+    </LocationProvider>
   );
 };
