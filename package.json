@@ -22,7 +22,9 @@
     "react-native-web": "~0.11.7",
     "react-navigation": "^4.3.5",
     "react-navigation-stack": "^2.3.9",
-    "react-navigation-tabs": "^2.8.9"
+    "react-navigation-tabs": "^2.8.9",
+    "react-native-maps": "0.26.1",
+    "expo-location": "~8.0.0"
   },
   "devDependencies": {
     "babel-preset-expo": "~8.0.0",
