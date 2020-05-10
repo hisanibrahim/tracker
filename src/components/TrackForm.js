@@ -26,12 +26,16 @@ const TrackFrom = () => {
       <Spacer>
         {!recording ? (
           <Button
-            disabled={!name}
+            // disabled={!name}
             title="Start recording"
             onPress={startRecording}
           />
         ) : (
-          <Button disabled={!name} title="Stop" onPress={stopRecording} />
+          <Button
+            //   disabled={!name}
+            title="Stop"
+            onPress={stopRecording}
+          />
         )}
       </Spacer>
     </>

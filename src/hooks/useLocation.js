@@ -34,10 +34,12 @@ export default (shouldWatch, callback) => {
     if (shouldWatch) {
       startWatching();
     } else {
-      subscriber.remove();
+      if (subscriber) {
+        subscriber.remove();
+      }
       setSubscriber(null);
     }
-  }, [shouldWatch]);
+  }, [shouldWatch, callback]);
 
   return [err];
 };
