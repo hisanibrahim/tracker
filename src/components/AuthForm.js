@@ -20,6 +20,7 @@ const AuthForm = ({ navigation, screen }) => {
       <Spacer>
         <Text h3>{header} for Tracker</Text>
       </Spacer>
+      <Spacer />
 
       <Input
         label="Email"
@@ -29,6 +30,7 @@ const AuthForm = ({ navigation, screen }) => {
         onChangeText={setEmail}
       />
       <Spacer />
+
       <Input
         label="Password"
         secureTextEntry
@@ -51,6 +53,7 @@ const AuthForm = ({ navigation, screen }) => {
           disabled={email && password ? false : true}
         />
       </Spacer>
+      <Spacer />
       <Button
         onPress={() => navigation.navigate(linkTo)}
         title={linkTitle}
@@ -64,8 +67,8 @@ const AuthForm = ({ navigation, screen }) => {
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default withNavigation(AuthForm);

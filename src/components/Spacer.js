@@ -7,9 +7,9 @@ const Spacer = ({ children }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 15,
-    marginHorizontal: 10
-  }
+    marginTop: 15,
+    marginHorizontal: 10,
+  },
 });
 
 export default Spacer;
