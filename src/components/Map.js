@@ -5,16 +5,8 @@ import { Context as LocationContext } from "../context/LocationContext";
 
 const Map = () => {
   const {
-    state: { currentLocation },
+    state: { currentLocation, locations },
   } = useContext(LocationContext);
-  let points = [];
-
-  for (let i = 0; i < 20; i++) {
-    points.push({
-      latitude: 10.016654 + i * 0.01,
-      longitude: 76.341303 - i * 0.01,
-    });
-  }
 
   if (!currentLocation) {
     return <ActivityIndicator size="large" style={{ marginTop: 200 }} />;
@@ -41,7 +33,7 @@ const Map = () => {
           strokeColor="rgba(158, 158, 255, 1)"
           fillColor="rgba(158, 158, 255, 0.3)"
         />
-        <Polyline coordinates={points} />
+        <Polyline coordinates={locations.map((location) => location.coords)} />
       </MapView>
     </View>
   );
