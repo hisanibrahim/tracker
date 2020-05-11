@@ -16,8 +16,6 @@ const createTrack = (dispatch) => async (name, locations) => {
   } catch (err) {
     console.log(err.message);
   }
-
-  console.log(name, locations.length);
 };
 
 export const { Provider, Context } = createDataContext(
